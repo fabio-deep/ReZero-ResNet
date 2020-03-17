@@ -154,3 +154,79 @@ plt.savefig('resnet20_loss_0_30.png', box_inches='tight')
 # plt.xlim(0, 300)
 # plt.savefig('resnet20_loss.png', box_inches='tight')
 plt.show()
+
+''' ResNet-110 '''
+
+train_error_58 = './epoch_error_train_58.csv'
+train_error_58 = genfromtxt(train_error_58, delimiter=',')
+valid_error_58 = './epoch_error_valid_58.csv'
+valid_error_58 = genfromtxt(valid_error_58, delimiter=',')
+
+train_error_59 = './epoch_error_train_59.csv'
+train_error_59 = genfromtxt(train_error_59, delimiter=',')
+valid_error_59 = './epoch_error_valid_59.csv'
+valid_error_59 = genfromtxt(valid_error_59, delimiter=',')
+
+# resnet-110 alpha (model 58)
+# Training time: 301m 19s, 410 epochs
+#
+# Best [Valid] | epoch: 350 - loss: 0.2925 - acc: 0.9416
+# [Test] loss 0.2796 - acc: 0.9412 - acc_topk: 0.9816
+
+# resnet-110 (model 59)
+# Training time: 240m 53s, 313 epochs
+#
+# Best [Valid] | epoch: 253 - loss: 0.3480 - acc: 0.9400
+# [Test] loss 0.3392 - acc: 0.9361 - acc_topk: 0.9809
+
+fig = plt.figure()
+plt.xlabel('epoch', fontsize=14)
+plt.ylabel('error (%)', fontsize=14)
+plt.title('ResNet-110', fontsize=16)
+
+plt.plot(train_error_58[1:,1], 100*train_error_58[1:,2], label='train (ReZero)', zorder=1)#, linewidth=1.5)
+plt.plot(valid_error_58[1:,1], 100*valid_error_58[1:,2], label='valid (ReZero)', zorder=2)#, linewidth=1.5)
+plt.plot(train_error_59[1:,1], 100*train_error_59[1:,2], 'c', label='train', zorder=3)#, linewidth=1.5)
+plt.plot(valid_error_59[1:,1], 100*valid_error_59[1:,2], 'm', label='valid', zorder=4)#, linewidth=1.5)
+
+plt.ticklabel_format(axis='y', style='sci')
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='x-large') # upper right, lower right, lower left
+# plt.ylim(5, 70)
+# plt.xlim(1, 30)
+# plt.savefig('resnet110_error_0_30.png', box_inches='tight')
+plt.ylim(-2, 40)
+plt.xlim(0, 300)
+plt.savefig('resnet110_error.png', box_inches='tight')
+plt.show()
+
+train_loss_58 = './epoch_loss_train_58.csv'
+train_loss_58 = genfromtxt(train_loss_58, delimiter=',')
+valid_loss_58 = './epoch_loss_valid_58.csv'
+valid_loss_58 = genfromtxt(valid_loss_58, delimiter=',')
+
+train_loss_59 = './epoch_loss_train_59.csv'
+train_loss_59 = genfromtxt(train_loss_59, delimiter=',')
+valid_loss_59 = './epoch_loss_valid_59.csv'
+valid_loss_59 = genfromtxt(valid_loss_59, delimiter=',')
+
+fig = plt.figure()
+plt.xlabel('epoch', fontsize=14)
+plt.ylabel('loss', fontsize=14)
+plt.title('ResNet-110', fontsize=16)
+
+plt.plot(train_loss_58[1:,1], train_loss_58[1:,2], label='train (ReZero)', zorder=1)#, linewidth=1.5)
+plt.plot(valid_loss_58[1:,1], valid_loss_58[1:,2], label='valid (ReZero)', zorder=2)#, linewidth=1.5)
+plt.plot(train_loss_59[1:,1], train_loss_59[1:,2], 'c', label='train', zorder=3)#, linewidth=1.5)
+plt.plot(valid_loss_59[1:,1], valid_loss_59[1:,2], 'm', label='valid', zorder=4)#, linewidth=1.5)
+
+plt.ticklabel_format(axis='y', style='sci')
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='x-large') # upper right, lower right, lower left
+# plt.ylim(.2, 1.8)
+# plt.xlim(1, 30)
+# plt.savefig('resnet110_loss_0_30.png', box_inches='tight')
+plt.ylim(-.1, 1.4)
+plt.xlim(0, 300)
+plt.savefig('resnet110_loss.png', box_inches='tight')
+plt.show()
