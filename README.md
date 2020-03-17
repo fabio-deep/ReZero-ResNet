@@ -3,7 +3,7 @@
 Trained a couple of nets for (fun) comparison, using identical hyperparams and early stopping on validation accuracy plateau schedule. All experiments can be replicated using the code from this repo.
 
 Check out the **ReZero Paper** by the authors: https://arxiv.org/pdf/2003.04887.pdf \
-Neat idea which seems to improve ResNet convergence speed, especially at the beggining of training.
+Neat idea which seems to improve ResNet convergence speed, especially at the beggining of training (see figures).
 
 ## ReZero ResNet vs. ResNet on CIFAR-10:
 
@@ -28,3 +28,22 @@ Neat idea which seems to improve ResNet convergence speed, especially at the beg
 |:-----------|:-----------------:|:---------------------:|
 | ResNet-20 | 8.75 | **7.98** |
 | ResNet-56 | 6.97 | **6.44** |
+
+## Run
+You can launch **Distributed** training from `src/` using:
+
+    python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=2 --use_env main.py
+
+This will train on a single machine (`nnodes=1`), assigning 1 process per GPU where `nproc_per_node=2` refers to training on 2 GPUs. To train on `N` GPUs simply launch `N` processes by setting `nproc_per_node=N`.
+
+The number of CPU threads to use per process is hard coded to `torch.set_num_threads(1)` for safety, and can be changed to `your # cpu threads / nproc_per_node` for better performance.
+
+For more info on **multi-node** and **multi-gpu** distributed training refer to https://github.com/hgrover/pytorchdistr/blob/master/README.md
+
+To train normally using **nn.DataParallel** or using the CPU:
+
+    python main.py --no_distributed
+
+* **Author**: Fabio De Sousa Ribeiro
+* **Email**: fdesosuaribeiro@lincoln.ac.uk
+
