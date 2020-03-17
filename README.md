@@ -1,6 +1,7 @@
 # ReZero ResNet Unofficial Pytorch Implementation.
 
-Trained a couple of nets for (fun) comparisons, using identical hyperparams and early stopping on validation accuracy plateau schedule. All experiments can be reproduced with the code from this repo using the default hyperparameters defined in `src/main.py`.
+Trained a couple of nets for (fun) comparisons, using identical hyperparams and early stopping on validation accuracy plateau schedule. \
+All experiments can be reproduced with the code from this repo using the default hyperparameters defined in `src/main.py`.
 
 Check out the **ReZero paper** by the authors: https://arxiv.org/pdf/2003.04887.pdf \
 Neat idea which seems to improve ResNet convergence speed, especially at the beggining of training (see figures).
