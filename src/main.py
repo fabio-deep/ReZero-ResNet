@@ -122,7 +122,7 @@ def main():
     # place model onto GPU(s)
     if args.distributed:
         torch.cuda.set_device(device)
-        torch.set_num_threads(1)  # n cpu threads / n processes per node
+        torch.set_num_threads(5)  # n cpu threads / n processes per node
         model = DistributedDataParallel(model.cuda(),
                                         device_ids=[local_rank], output_device=local_rank)
         # only print stuff from process (rank) 0
