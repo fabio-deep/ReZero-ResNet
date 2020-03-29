@@ -66,10 +66,9 @@ class BasicBlock(nn.Module):
         out = self.bn2(self.conv2(out))
 
         if self.ReZero:
-            out = self.alpha_i * out + self.shortcut(x)
+            out = self.alpha_i * F.relu(out) + self.shortcut(x)
         else:
-            out += self.shortcut(x)
-        out = F.relu(out)
+            out = F.relu(out + self.shortcut(x))
         return out
 
 class ResNet(nn.Module):
